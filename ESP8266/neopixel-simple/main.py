@@ -3,12 +3,17 @@ import uasyncio as asyncio
 from umqtt.simple import MQTTClient
 import neopixel
 
+# 客户端 ID
 CLIENT_ID = b'light1_'
+# 你的 mqtt 服务器地址
 SERVER = 'csl.cool'
+# 你的 matt 服务端口号
 SERVER_PORT = 1883
 
+# LED 灯泡的个数
 LED_COUNT = 16
 
+# mqtt 订阅的主题内容
 TOPIC_SET_ON = CLIENT_ID + b"setOn"
 TOPIC_GET_ON = CLIENT_ID + b"getOn"
 TOPIC_SET_RGB = CLIENT_ID + b"setRGB"
@@ -63,7 +68,7 @@ def main():
     # `60` 是指在一次通信后，保持连接 60s 的时间，如果超过这个时间没有和服务器通信
     # 服务器会认为连接已经断开，这里我们每 30s 钟 ping 一下服务器保持连接
     print("Ready to connect mqtt...")
-    mqtt = MQTTClient(CLIENT_ID, SERVER, SERVER_PORT, "ssbun", "Bz550527534", 60)
+    mqtt = MQTTClient(CLIENT_ID, SERVER, SERVER_PORT, "mqtt server account", "mqtt server password", 60)
     # 设置回调
     mqtt.set_callback(mqtt_callback)
     # 连接服务器
